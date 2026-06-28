@@ -17,26 +17,26 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public List<Producto> listarProductos() {
         return productoService.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Long id) {
         Producto producto = productoService.findById(id);
         return (producto != null) ? ResponseEntity.ok(producto) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR')")
     public Producto guardarProducto(@RequestBody Producto producto) {
         return productoService.save(producto);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR')")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
         Producto productoExistente = productoService.findById(id);
         if (productoExistente != null) {

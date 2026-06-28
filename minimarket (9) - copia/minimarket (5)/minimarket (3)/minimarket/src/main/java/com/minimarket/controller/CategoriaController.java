@@ -17,13 +17,13 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public List<Categoria> listarCategorias() {
         return categoriaService.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public ResponseEntity<Categoria> obtenerCategoriaPorId(@PathVariable Long id) {
         Categoria categoria = categoriaService.findById(id);
         return (categoria != null) ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();

@@ -30,10 +30,12 @@ public class DataInitializerc implements ApplicationRunner {
         crearRolSiNoExiste("CLIENTE");
         crearRolSiNoExiste("EMPLEADO");
         crearRolSiNoExiste("ADMINISTRADOR");
+        crearRolSiNoExiste("CAJERO");
 
         crearUsuarioSiNoExiste("cliente", "cliente123", Set.of("CLIENTE"));
         crearUsuarioSiNoExiste("empleado", "empleado123", Set.of("EMPLEADO"));
         crearUsuarioSiNoExiste("administrador", "admin123", Set.of("ADMINISTRADOR"));
+        crearUsuarioSiNoExiste("cajero", "cajero123", Set.of("CAJERO"));
     }
 
     private void crearRolSiNoExiste(String nombre) {

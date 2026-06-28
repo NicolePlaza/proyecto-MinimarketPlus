@@ -30,7 +30,7 @@ public class VentaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('CAJERO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CAJERO')")
     public Venta guardarVenta(@RequestBody Venta venta) {
         return ventaService.save(venta);
     }

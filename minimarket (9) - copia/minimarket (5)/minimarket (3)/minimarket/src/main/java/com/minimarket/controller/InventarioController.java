@@ -17,13 +17,13 @@ public class InventarioController {
     private InventarioService inventarioService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public List<Inventario> listarMovimientosDeInventario() {
         return inventarioService.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public ResponseEntity<Inventario> obtenerMovimientoPorId(@PathVariable Long id) {
         Inventario inventario = inventarioService.findById(id);
         return (inventario != null) ? ResponseEntity.ok(inventario) : ResponseEntity.notFound().build();

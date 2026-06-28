@@ -1,5 +1,7 @@
 package com.minimarket.service;
 
+import com.minimarket.dto.UsuarioRequestDTO;
+import com.minimarket.dto.UsuarioResponseDTO;
 import com.minimarket.entity.Usuario;
 
 import java.util.List;
@@ -11,4 +13,7 @@ public interface UsuarioService {
     Optional<Usuario> findByUsername(String username);
     Usuario save(Usuario usuario);
     void deleteById(Long id);
+
+    UsuarioResponseDTO crearDesdeDTO(UsuarioRequestDTO dto);
+    Optional<UsuarioResponseDTO> actualizarDesdeDTO(Long id, UsuarioRequestDTO dto);
 }

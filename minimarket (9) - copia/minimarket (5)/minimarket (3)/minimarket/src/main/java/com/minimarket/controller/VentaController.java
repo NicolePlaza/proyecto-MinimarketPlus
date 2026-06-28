@@ -17,20 +17,20 @@ public class VentaController {
     private VentaService ventaService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public List<Venta> listarVentas() {
         return ventaService.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CLIENTE','EMPLEADO','CAJERO','ADMINISTRADOR')")
     public ResponseEntity<Venta> obtenerVentaPorId(@PathVariable Long id) {
         Venta venta = ventaService.findById(id);
         return (venta != null) ? ResponseEntity.ok(venta) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('EMPLEADO','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyRole('CAJERO','ADMINISTRADOR')")
     public Venta guardarVenta(@RequestBody Venta venta) {
         return ventaService.save(venta);
     }
